@@ -1,0 +1,4 @@
+/out/
+#/target для проектов на Maven
+/.idea/
+*.iml/
