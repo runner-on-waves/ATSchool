@@ -24,8 +24,8 @@ public class Car {
         this.weight = weight;
         this.driver = driver;
         this.engine = engine;
-    }
 
+    }
     public void start() {
         System.out.println("Поехали!");
     }
@@ -43,8 +43,8 @@ public class Car {
     }
 
     public String toString() {
-        return String.format("Модель: <%s>, класс: <%s>\nХарактеристики:\n  вес: <%s>\n  двигатель: %s\nВодитель: %s",
-                model, vehicleClass.getName(), weight, engine.toString(), driver.toString());
+        return String.format("Модель: <%s>, класс: <%s>\nХарактеристики:\n  вес: <%s>\n  двигатель: %s\nВодитель: %s\n",
+                             model, vehicleClass.name(), weight, engine, driver);
 
     }
 }

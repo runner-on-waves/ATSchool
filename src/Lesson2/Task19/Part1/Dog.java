@@ -18,11 +18,4 @@ public class Dog extends Animal {
         System.out.println("Собака ест " + this.food + "." + " Осталось " + this.foodCounter + " пачек корма.");
 
     }
-
-    @Override
-    public String toString() {
-        String res = String.format(" <%s> \n Страна обитания: %s \n Состояние здоровья: %s \n Сколько особей: %s \n", name, location, health.getNameCyrillic(), counter);
-        return res;
-    }
-
 }

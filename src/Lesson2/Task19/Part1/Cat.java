@@ -19,11 +19,4 @@ public class Cat extends Animal {
         System.out.println("Кот ест " + this.food + " Осталось " + this.foodCounter + " пачек корма.");
 
     }
-
-    @Override
-    public String toString() {
-        String res = String.format("<%s> \n Страна обитания: %s \n Состояние здоровья: %s \n Сколько особей: %s \n", name, location, health.getNameCyrillic(), counter);
-        return res;
-    }
-
 }

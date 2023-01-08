@@ -13,9 +13,9 @@ public class Main {
         Horse horse1 = new Horse("Идальго", "овес", "ОАЭ", HEALTHY, 180);
 
         // Вывод информации по каждой особи
-        System.out.println(dog1.toString());
-        System.out.println(cat1.toString());
-        System.out.println(horse1.toString());
+        System.out.println(dog1);
+        System.out.println(cat1);
+        System.out.println(horse1);
 
         //Вывод звука для каждой особи
         dog1.makeSound();
@@ -38,7 +38,7 @@ public class Main {
         System.out.println("");
 
         // Вывод нездорового животного после посещения ветеринара
-        System.out.println(dog1.toString());
+        System.out.println(dog1);
 
         //Вызов метода sleep у некоторых животных
         cat1.sleep();

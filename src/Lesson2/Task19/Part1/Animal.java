@@ -17,11 +17,20 @@ public abstract class Animal {
         counter++;
     }
 
-    public void makeSound() {
+    public String getName() {
+        return name;
     }
 
-    public void eat() {
+    public HealthState getHealth() {
+        return health;
     }
+    public void setHealth(HealthState health) {
+        this.health = health;
+    }
+
+    public abstract void makeSound();
+
+    public abstract void eat();
 
     public void sleep() {
         System.out.println("Животное спит.");
@@ -29,6 +38,8 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return super.toString();
+
+        return String.format("<%s> \n Страна обитания: %s \n Состояние здоровья: %s \n Сколько особей: %s \n",
+                             name, location, health.getNameCyrillic(), counter);
     }
 }

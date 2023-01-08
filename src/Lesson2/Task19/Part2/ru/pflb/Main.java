@@ -23,15 +23,15 @@ public class Main {
 
         //Создание объектов машин
         Car car1 = new Car("Nissan Micra", VehicleClass.MINI, 1300, driver1, engine1);
-        Lorry lorry1 = new Lorry("Dongfeng Captain-T", 2500, driver2, engine2, 4500);
+        Lorry lorry1 = new Lorry("Dongfeng Captain-T",2500, driver2, engine2, 4500);
         Lorry lorry2 = new Lorry("Dongfeng Captain-T", 2900, driver2, engine4, 5500);
         SportCar sportCar1 = new SportCar("Lamborghini Miura", 1292, driver3, engine3, 350);
 
         //Вывод информации об объектах-машинах
-        System.out.println(car1 + "\n");
-        System.out.println(lorry1 + "\n");
-        System.out.println(sportCar1 + "\n");
-        System.out.println(lorry2 + "\n");
+        System.out.println(car1);
+        System.out.println(lorry1);
+        System.out.println(sportCar1);
+        System.out.println(lorry2);
 
         // Вызов Методов для объектов
         car1.start();

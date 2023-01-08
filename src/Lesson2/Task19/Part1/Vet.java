@@ -13,11 +13,11 @@ public class Vet {
 
     // Метод для лечения животного
     void treatAnimal(Animal animal) {
-        if (animal.health.equals(HEALTHY)) {
-            System.out.println("Осуществлен прием у ветеринара " + this.name + "." + " Животное " + animal.name + " здорово. Лечение не требуется.");
-        } else if (animal.health.equals(UNHEALTHY)) {
-            animal.health = HEALTHY;
-            System.out.println("Осуществлен прием у ветеринара " + this.name + "." + " Животное " + animal.name + " вылечено");
+        if (animal.getHealth().equals(HEALTHY)) {
+            System.out.println("Осуществлен прием у ветеринара " + this.name + "." + " Животное " + animal.getName()+ " здорово. Лечение не требуется.");
+        } else if (animal.getHealth().equals(UNHEALTHY)) {
+            animal.setHealth(HEALTHY);
+            System.out.println("Осуществлен прием у ветеринара " + this.name + "." + " Животное " + animal.getName() + " вылечено.");
         }
 
     }
