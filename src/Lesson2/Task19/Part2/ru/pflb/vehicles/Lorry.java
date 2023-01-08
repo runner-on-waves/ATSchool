@@ -9,10 +9,10 @@ public class Lorry extends Car {
     public Lorry(String model,int weight, Driver driver, Engine engine, int loadingAmount) {
         super(model,weight, driver, engine);
         this.loadingAmount = loadingAmount;
-        if (this.loadingAmount <= 5000) {
-            this.vehicleClass= VehicleClass.MEDIUM;
-        } else
-            this.vehicleClass= VehicleClass.LARGE;
+        if (this.loadingAmount <= 5000)
+            this.vehicleClass = VehicleClass.MEDIUM;
+        else
+            this.vehicleClass = VehicleClass.LARGE;
     }
 
     @Override
