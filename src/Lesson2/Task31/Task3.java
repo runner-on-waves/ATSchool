@@ -12,7 +12,7 @@ public class Task3 {
         int b = Integer.parseInt(args[1]);
         int a1 = Integer.parseInt(args[2]);
         int b1 = Integer.parseInt(args[3]);
-        System.out.println(a % b == 0 ? "true" : "false");
-        System.out.println(a1 % b1 == 0 ? "true" : "false");
+        System.out.println(a % b == 0);
+        System.out.println(a1 % b1 == 0);
     }
 }
