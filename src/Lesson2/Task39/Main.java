@@ -1,7 +1,5 @@
 package Lesson2.Task39;
 
-import static Lesson2.Task39.Animal.*;
-
 class Main {
     public static void main(String[] args) {
         System.out.println("Задание 1");
@@ -63,8 +61,8 @@ class Main {
 
         //Задание 4. Присваиваем статической переменной новое значение и вызываем у котика(экземпляр класса-наследника Animal)
         System.out.println("Задание 4");
-        planet = "Луна";
-        System.out.println(cat1.planet);
+        Animal.setPlanet("Луна");
+        System.out.println(cat1.getPlanet());
 
     }
 }
