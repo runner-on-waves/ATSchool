@@ -28,7 +28,6 @@ public class Assignment2 {
                 break;
             default:
                 System.out.println("Ошибка. Введено недопустимое значение. Диапазон допустимых значений от 1 до 7");
-                break;
         }
     }
 }

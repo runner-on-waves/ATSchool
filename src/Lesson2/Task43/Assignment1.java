@@ -13,11 +13,13 @@ public class Assignment1 {
         int c = Integer.parseInt(args[2]);
         if (a > b && a > c) {
             System.out.println(a);
-        }
-        if (b > a && b > c) {
+        } else if (b > a && b > c) {
             System.out.println(b);
-        } else System.out.println(c);
-
+        } else {
+            System.out.println(c);
+        }
     }
+
 }
+
 
