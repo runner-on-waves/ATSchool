@@ -9,7 +9,8 @@ public class Assignment2 {
             System.out.println("Некорректный ввод. Поработайте подольше!");
             return;
         }
-        System.out.println("Бригада отработала " + calculateWorkTime(m, n) / 60 + " часов " + (calculateWorkTime(m, n) % 60 + " минут"));
+        int totalWorkTime = calculateWorkTime(m, n);
+        System.out.println("Бригада отработала " + totalWorkTime / 60 + " часов " + (totalWorkTime % 60 + " минут"));
     }
 
     public static int calculateWorkTime(int m, int n) {

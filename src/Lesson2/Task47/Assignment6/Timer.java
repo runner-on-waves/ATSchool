@@ -3,15 +3,12 @@ package Lesson2.Task47.Assignment6;
 public class Timer {
 
     public int seconds;
-
     Timer(int seconds) {
         this.seconds = seconds;
     }
 
-
-    static void waitSecond(long nextMillis) throws InterruptedException {
+    static void waitSecond(long nextMillis) {
         while (nextMillis > System.currentTimeMillis()) {
-            Thread.sleep(10); // небольшое приращение сделано чтобы более-менее точно отловить ожидание в 1 секунду
         }
     }
 
@@ -31,7 +28,7 @@ public class Timer {
 
     }
 
-    void start() throws InterruptedException {
+    void start() {
         long nextMillis = System.currentTimeMillis();
         printTime();
         while (seconds > 0) {
