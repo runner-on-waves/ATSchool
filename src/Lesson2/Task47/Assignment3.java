@@ -12,17 +12,25 @@ public class Assignment3 {
     }
 
     static void snakePrint(int n, int col) {
-        int k = 1;
-        System.out.print("  ");
+        String buffer = ""; // заводим буфер для печати строк
+        int k = 0; // переменная для сравнения с col(счетчик количества цифр в строке)
+        boolean directionForward = true; // порядок печати цифр прямой/обратный
         for (int i = 1; i <= n; i++) {
-            if (k < col) {
-                System.out.print(i + " ");
-                k++;
+            if (directionForward) {
+                buffer = buffer + i + " "; // доращиваем строку справа
             } else {
-                k = 1;
-                System.out.println(i);
-                System.out.print("  ");
+                buffer = i + " " + buffer; // доращиваем строку слева
             }
+            k++;
+            if (k == col) { //когда собрали полную строку для печати из col элементов
+                System.out.println(buffer);
+                buffer = "";
+                k = 0; // обнуляем счетчик
+                directionForward = !directionForward; //меняем направление печати
+            }
+        }
+        if (!buffer.equals("")) { // когда n не кратно col
+            System.out.println(buffer); // печатаем остаток неполной строки < col
         }
     }
 }
