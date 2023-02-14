@@ -5,8 +5,8 @@ public class Assignment1 {
 
     public static void main(String[] args) {
         String programArg = args[0];
-        System.out.println("Через аргументы передается " + "\"" + programArg + "\"" + ",  Вывод: " + printCharPosition(programArg) + ".");
-        printCharPosition(programArg);
+        int position = printCharPosition(programArg);
+        System.out.println("Через аргументы передается " + "\"" + programArg + "\"" + ",  Вывод: " + position + ".");
     }
 
     static int printCharPosition(String arg) {
@@ -16,7 +16,7 @@ public class Assignment1 {
             System.exit(-1);
         }
         String subStr = str.substring(0, index);
-        subStr = subStr.replaceAll("[\\s/.]", "");
+        subStr = subStr.replaceAll("[\\s.]", "");
         return subStr.length();
     }
 }
