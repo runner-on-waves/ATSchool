@@ -13,10 +13,7 @@ public class Assignment2 {
     static boolean isValidPath(String path) {
         int index = path.length() - 1;
         char lastSymbol = path.charAt(index);
-        if (lastSymbol == '/' || lastSymbol == '\\') {
-            return false;
-        }
-        return true;
+        return lastSymbol == '/' || lastSymbol == '\\';
     }
 
     static void printPath(String path) {

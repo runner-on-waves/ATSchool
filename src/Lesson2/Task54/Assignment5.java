@@ -15,6 +15,7 @@ public class Assignment5 {
             System.out.println("Строка не является дробным числом");
         }
     }
+
     static boolean isInteger(String str) {
         for (int i = 0; i < str.length(); i++) {
             char symbol = str.charAt(i);
@@ -24,12 +25,10 @@ public class Assignment5 {
         }
         return true;
     }
+
     // дополнительный метод на проверку является ли вводимая строка дробным числом с regexp
     static boolean isDouble(String str) {
-            if (!str.matches("[+-]?\\d+(.\\d+)?") && !str.matches("[+-]?\\d+(,\\d+)?")) {
-                return false;
-            }
-        return true;
+        return str.matches("[+-]?\\d+([.,]\\d+)?");
     }
 
 }

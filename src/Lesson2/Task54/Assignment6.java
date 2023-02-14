@@ -20,18 +20,18 @@ public class Assignment6 {
 
     static int toInt(String str) {
         //заводим строку для возможного знака
-        skipLeadingZeros(str);
+        String str1 = skipLeadingZeros(str); // получаем строку без нулей, так в цикле по сборке числа будет меньше проходов
         long number = 0; // так как есть риск при сборке числа выйти за пределы int, а проверка позже, то заводим long
         boolean isMinus = false; // флаг знака -
         int i = 0;
 
-        if (str.charAt(0) == '-') {
+        if (str1.charAt(0) == '-') {
             isMinus = true;
             i = 1;
         }
 
-        for (; i < str.length(); i++) {
-            char symbol = str.charAt(i);
+        for (; i < str1.length(); i++) {
+            char symbol = str1.charAt(i);
             if (Character.isDigit(symbol)) {
                 number = number * 10 + Character.getNumericValue(symbol); // сборка числа
                 if (number > Integer.MAX_VALUE || number < Integer.MIN_VALUE) { // проверка, что число не выходит за пределы int
