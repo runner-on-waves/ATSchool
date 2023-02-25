@@ -13,10 +13,11 @@ public class Assignment2 {
         }
         printLongestValues(args);
     }
-    static void printLongestValues(String[] array) {
 
+    static void printLongestValues(String[] array) {
+        int maxValueLength = findMaxValueLength(array);
         for (String value : array) {
-            if (value.length() == findMaxValueLength(array)) {
+            if (value.length() == maxValueLength) {
                 System.out.print(value + " ");
             }
         }
