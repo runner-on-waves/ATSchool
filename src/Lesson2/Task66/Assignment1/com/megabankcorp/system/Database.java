@@ -6,15 +6,11 @@ import java.math.BigDecimal;
 
 public abstract class Database {
 
-    public void deposit(BigDecimal sum, Account account) {
-    }
+    public abstract void deposit(BigDecimal sum, Account account);
 
-    public void withdraw(BigDecimal sum, Account account) {
-    }
+    public abstract void withdraw(BigDecimal sum, Account account);
 
-    protected BigDecimal getAmount(Account account) {
-        return account.getCurrentSum();
-    }
+    protected abstract BigDecimal getAmount(Account account);
 
     void transfer(BigDecimal sum, Account fromAccount, Account toAccount) {
         withdraw(sum, fromAccount);
