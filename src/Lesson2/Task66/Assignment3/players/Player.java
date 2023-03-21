@@ -2,6 +2,7 @@ package Lesson2.Task66.Assignment3.players;
 
 import Lesson2.Task66.Assignment3.cards.Card;
 import Lesson2.Task66.Assignment3.cards.CardHand;
+
 import static Lesson2.Task66.Assignment3.players.PlayerState.*;
 
 
@@ -10,9 +11,11 @@ public class Player {
     private PlayerState state;
     private CardHand playerHand;
     private final String playerName;
+
     public PlayerState getState() {
         return state;
     }
+
     public Player(String name) {
         this.playerName = name;
         nervousnessRate = 0;
@@ -35,8 +38,8 @@ public class Player {
 
     }
 
-    public boolean isActive(PlayerState state) {
-        return state == ACTIVE;
+    public boolean isActive() {
+        return this.getState() == ACTIVE;
     }
 
     public void takeCard(Card card) {

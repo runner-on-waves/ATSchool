@@ -15,10 +15,6 @@ public enum CardType {
     KING("Король", 10),
     ACE("Туз", 11);
 
-    public String getName() {
-        return name;
-    }
-
     private final String name;
     private int point;
 
@@ -26,6 +22,9 @@ public enum CardType {
         this.name = name;
         this.point = point;
 
+    }
+    public String getName() {
+        return name;
     }
 
     int getPoints() {

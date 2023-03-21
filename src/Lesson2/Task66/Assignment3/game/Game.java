@@ -28,9 +28,7 @@ public class Game {
     private GameState checkState(Player player1, Player player2) {
         int player1Points = player1.getPoints();
         int player2Points = player2.getPoints();
-        PlayerState player1State = player1.getState();
-        PlayerState player2State = player2.getState();
-        if (player1.isActive(player1State)|| player2.isActive(player2State)
+        if (player1.isActive() || player2.isActive()
                 && (player1Points < 21 && player2Points < 21)) {
             return RUNNING;
         }
@@ -39,23 +37,24 @@ public class Game {
         }
         if (player1Points > player2Points && player1Points <= 21) {
             winner = player1;
-        } else
+        } else {
             winner = player2;
+        }
         return WIN;
     }
 
-   private Card getTopCard() {
+    private Card getTopCard() {
         return currentDeck.getTopCard();
     }
 
     private void takeTurn(Player player) {
-        if (player.getState() == PlayerState.ACTIVE) {
+        if (player.isActive()) {
             Card card = getTopCard();
             System.out.println("Игрок " + player + " получил " + card);
             player.takeCard(card);
-        } else
+        } else {
             System.out.println("Игрок " + player + " пассует");
-
+        }
     }
 
     void printResult() {

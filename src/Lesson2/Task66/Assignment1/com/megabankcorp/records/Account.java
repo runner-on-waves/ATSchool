@@ -5,12 +5,11 @@ import java.math.BigDecimal;
 public class Account {
     private BigDecimal currentSum;
     private long currentAccountId;
+    private long clientId;
 
     public long getCurrentAccountId() {
         return currentAccountId;
     }
-
-    private long clientId;
 
     public BigDecimal getCurrentSum() {
         return currentSum;
