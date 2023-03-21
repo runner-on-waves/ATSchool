@@ -1,5 +1,5 @@
 package Lesson2.Task39;
-
+//import static Task39.Animal.testStaticMethod();
 class Main {
     public static void main(String[] args) {
         System.out.println("Задание 1");
