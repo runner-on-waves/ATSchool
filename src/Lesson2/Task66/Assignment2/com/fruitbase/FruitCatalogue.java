@@ -1,5 +1,7 @@
 package Lesson2.Task66.Assignment2.com.fruitbase;
+
 import Lesson2.Task66.Assignment2.com.fruitbase.fruits.*;
+
 import java.math.BigDecimal;
 
 public class FruitCatalogue {
@@ -7,10 +9,10 @@ public class FruitCatalogue {
 
     FruitCatalogue() {
 
-        fruits = new Fruit[]{new Apple(0.2, new BigDecimal("20.00"), "apple"),
-                new Orange(0.2, new BigDecimal("20.00"), "orange"),
-                new Banana(0.2, new BigDecimal("20.00"), "banana"),
-                new Pineapple(0.2, new BigDecimal("20.00"), "pineapple")
+        fruits = new Fruit[]{new Apple("apple", 0.2, new BigDecimal("20.00")),
+                new Orange("orange", 0.2, new BigDecimal("20.00")),
+                new Banana("banana", 0.2, new BigDecimal("20.00")),
+                new Pineapple("pineapple", 0.2, new BigDecimal("20.00"))
         };
 
     }
