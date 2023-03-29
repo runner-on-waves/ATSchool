@@ -34,38 +34,4 @@ public class Cargo {
         System.arraycopy(arrayCopy, 0, foundFruits, 0, arrayCopy.length);
     }
 
-    //заготовка метода
-    public Fruit[] getFruits() {
-        //с его помощью покупатели получают фрукты из груза
-        //      возвращает список фруктов
-        return foundFruits;
-    }
-
-    //заготовка метода
-    public void removeFruit(Fruit fruit) {
-        for (int i = 0; i < foundFruits.length; i++) {
-            if (fruit.equals(foundFruits[i])) {
-                Fruit[] arrayCopy = foundFruits;
-                foundFruits = new Fruit[arrayCopy.length - 1];// резервируем место
-                System.arraycopy(arrayCopy, 0, foundFruits, 0, i);
-                System.arraycopy(arrayCopy, i + 1, foundFruits, i, arrayCopy.length - i - 1);
-                break;
-            }
-        }
-    }
-
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        Fruit[] currentCargoFruits = this.getFruits();
-        for (Fruit currentCargoFruit : currentCargoFruits) {
-            s.append(currentCargoFruit.getName()).append(" ");
-        }
-        String weight = String.format("%.2f", this.getWeight());
-        return "Информация о грузе \n" +
-                "Вес: " + weight + "\n"
-                + "Цена: " + this.getPrice() + "\n"
-                + "Позиции в грузе: " + s + "\n"
-                + "Количество позиций в грузе: " + currentCargoFruits.length;
-    }
-
 }
