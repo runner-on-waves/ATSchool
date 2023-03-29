@@ -24,5 +24,8 @@ public abstract class Customer {
         }
         System.out.println();
     }
-
+   @Override
+    public String toString(){
+        return name;
+   }
 }

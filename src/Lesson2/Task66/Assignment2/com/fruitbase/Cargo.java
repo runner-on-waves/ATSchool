@@ -61,11 +61,8 @@ public class Cargo {
             s.append(currentCargoFruit.getName()).append(" ");
         }
         String weight = String.format("%.2f", this.getWeight());
-        return "Информация о грузе \n" +
-                "Вес: " + weight + "\n"
-                + "Цена: " + this.getPrice() + "\n"
-                + "Позиции в грузе: " + s + "\n"
-                + "Количество позиций в грузе: " + currentCargoFruits.length;
+        return "Информация о грузе(" +currentCargoFruits.length + "): " + s + "\n" +
+                "Вес: " + weight + "  " + "Цена: " + this.getPrice();
     }
 
 }

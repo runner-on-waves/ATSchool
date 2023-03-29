@@ -20,10 +20,13 @@ public class Simulation {
             System.out.println("Груз до покупок");
             System.out.println(cargo);
             customers[i].takeFruits(cargo);
-            System.out.print("Список купленных фруктов, покупатель " + (i + 1) + ": ");
+            System.out.println("");
+            System.out.print("Покупатель " + (i + 1) + " тип " +  customers[i].getClass().getSimpleName() + " с именем " + customers[i] + " купил: ");
             customers[i].printPurchases();
+            System.out.println("");
             System.out.println("Груз после покупок");
             System.out.println(cargo);
+            System.out.println("");
         }
     }
 }
