@@ -1,19 +1,28 @@
 package Lesson2.Task66.Assignment2.com.fruitbase;
 
 import Lesson2.Task66.Assignment2.com.fruitbase.fruits.*;
-
+import java.io.*;
 import java.math.BigDecimal;
+import java.util.Arrays;
 
-public class FruitCatalogue {
+public class FruitCatalogue implements Serializable {
     private Fruit[] fruits;
 
-    FruitCatalogue() {
 
-        fruits = new Fruit[]{new Apple("apple", 0.2, new BigDecimal("20.00")),
-                new Orange("orange", 0.2, new BigDecimal("20.00")),
-                new Banana("banana", 0.2, new BigDecimal("20.00")),
-                new Pineapple("pineapple", 0.2, new BigDecimal("20.00"))
+    FruitCatalogue() {
+        //Для проверки сериализации/десериализации 2 версии каталога
+       /*fruits = new Fruit[]{new Apple("apple", 0.4, new BigDecimal("50.00")),
+                new Orange("orange", 0.4, new BigDecimal("50.00")),
+                new Banana("banana", 0.4, new BigDecimal("50.00")),
+                new Pineapple("pineapple", 0.4, new BigDecimal("50.00"))
+        };*/
+
+        fruits = new Fruit[]{new Apple("apple", 0.7, new BigDecimal("50.00")),
+                new Orange("orange", 0.7, new BigDecimal("50.00")),
+                new Banana("banana", 0.7, new BigDecimal("50.00")),
+                new Pineapple("pineapple", 0.7, new BigDecimal("50.00"))
         };
+
 
     }
 
@@ -24,5 +33,12 @@ public class FruitCatalogue {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "FruitCatalogue{" +
+                "fruits=" + Arrays.toString(fruits) +
+                '}';
     }
 }

@@ -34,7 +34,6 @@ public class Cargo {
         System.arraycopy(arrayCopy, 0, foundFruits, 0, arrayCopy.length);
     }
 
-    //заготовка метода
     public Fruit[] getFruits() {
         //с его помощью покупатели получают фрукты из груза
         //      возвращает список фруктов

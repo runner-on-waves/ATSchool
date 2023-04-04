@@ -1,10 +1,12 @@
 package Lesson2.Task66.Assignment2.com.fruitbase.fruits;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import static Lesson2.Task66.Assignment2.com.fruitbase.fruits.Freshness.FRESH;
 
-public abstract class Fruit {
+public abstract class Fruit implements Serializable {
     private String name;
     private double weight;
     private BigDecimal price;
@@ -39,8 +41,8 @@ public abstract class Fruit {
         }
 
         Fruit fruit = (Fruit) obj;
-        return name == fruit.name
-                && (weight == fruit.weight) && (price == fruit.price);
+        return Objects.equals(name, fruit.name)
+                && (weight == fruit.weight) && (Objects.equals(price, fruit.price));
     }
 
     @Override
@@ -58,4 +60,13 @@ public abstract class Fruit {
         return freshness == FRESH;
     }
 
+    @Override
+    public String toString() {
+        return "\nFruit{" +
+                "name='" + name + '\'' +
+                ", weight=" + weight +
+                ", price=" + price +
+                ", freshness=" + freshness +
+                "}";
+    }
 }
