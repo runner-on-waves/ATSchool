@@ -1,7 +1,8 @@
 package Lesson2.Task66.Assignment2.com.fruitbase;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import Lesson2.Task66.Assignment2.com.fruitbase.customers.Customer;
+import Lesson2.Task66.Assignment2.com.fruitbase.customers.FreshCustomer;
+import Lesson2.Task66.Assignment2.com.fruitbase.customers.UniqueCustomer;
 
 public class Simulation {
     public static void main(String[] args) {
@@ -9,37 +10,26 @@ public class Simulation {
         System.out.println("Исходный каталог фруктов:");//отладочный вывод исходного каталога в классе
         System.out.println(fruitBase); //отладочный вывод исходного каталога в классе
         System.out.println("Введите флаг для экспрота/импорта каталога");
-        String s;
-        //Получение значения флага из консоли
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            s = reader.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        //Проверка флага и вызов методов экспорта/импорта
-        if (s.equals("-e") || s.equals("--export")) {
-            System.out.println("Начинаем экспорт");
-            fruitBase.exportCatalogue();
-        } else if (s.equals("-i") || s.equals("--import")) {
-            System.out.println("Начинаем импорт");
-            fruitBase.importCatalogue();
+        for (String s : args) {
+            if (s.equals("-e") || s.equals("--export")) {
+                System.out.println("Начинаем экспорт");
+                fruitBase.exportCatalogue();
+            } else if (s.equals("-i") || s.equals("--import")) {
+                System.out.println("Начинаем импорт");
+                fruitBase.importCatalogue();
+                System.out.println("Загруженный каталог фруктов:");
+                System.out.println(fruitBase);
+                System.out.println(" ");
 
-            System.out.println("Загруженный каталог фруктов:");
-            System.out.println(fruitBase);
-            System.out.println(" ");
+            }
+            if (args.length == 0) {
+                System.out.println("Заказ не указан в аргументах командной строки");
+                return;
+            }
+        }
 
-        } else {
-            System.out.println("Флаг введен некорректно");
-        }
-        if (args.length == 0) {
-            System.out.println("Заказ не указан в аргументах командной строки");
-            return;
-        }
-        Cargo cargo = fruitBase.takeOrder(args);
-        System.out.println(cargo);
         //Блок для проверки заказов покупателей
-       /* Customer[] customers = {new FreshCustomer("Fresh"), new UniqueCustomer("Unique")};
+        Customer[] customers = {new FreshCustomer("Fresh"), new UniqueCustomer("Unique")};
         for (int i = 0; i < customers.length; i++) {
             Cargo cargo = fruitBase.takeOrder(args);
             System.out.println("Груз до покупок");
@@ -52,6 +42,7 @@ public class Simulation {
             System.out.println("Груз после покупок");
             System.out.println(cargo);
             System.out.println("");
-        }*/
+
+        }
     }
 }

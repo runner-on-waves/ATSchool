@@ -9,7 +9,6 @@ public class Alchemy {
             System.out.println("Нет элементов для соединения");
             return;
         }
-
         if (args.length == 1) {
             System.out.println("Нельзя создать производный элемент. Не хватает материалов.Базовый элемент: " + create(args[0]).getClass().getSimpleName());
             return;
@@ -18,7 +17,7 @@ public class Alchemy {
         for (int i = 0; i < args.length; i++) {
             String elementName = args[i];
             elementsArray[i] = NatureElement.create(elementName);
-            if (NatureElement.create(args[i]) == null) {
+            if (args[i] == null) {
                 System.out.println("Неверные названия элементов: " + args[i]);
                 return;
             }

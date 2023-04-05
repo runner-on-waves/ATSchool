@@ -23,6 +23,7 @@ public class FruitBase implements Serializable {
         }
         return cargo;
     }
+
     public void exportCatalogue() {
         String exportPath = "C:\\javaHomework\\Lesson3\\save.ser";
         try (FileOutputStream outputStream = new FileOutputStream(exportPath)) {
@@ -37,12 +38,11 @@ public class FruitBase implements Serializable {
 
     public void importCatalogue() {
         String importPath = "C:\\javaHomework\\Lesson3\\save.ser";
-        try (FileInputStream fileInputStream = new FileInputStream(importPath)){
+        try (FileInputStream fileInputStream = new FileInputStream(importPath)) {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            fruitList  =(FruitCatalogue) objectInputStream.readObject();
-
+            fruitList = (FruitCatalogue) objectInputStream.readObject();
             System.out.println("Каталог импортирован " + importPath);
-        } catch (IOException | ClassNotFoundException e){
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

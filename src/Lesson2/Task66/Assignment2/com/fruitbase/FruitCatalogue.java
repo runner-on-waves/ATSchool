@@ -1,6 +1,7 @@
 package Lesson2.Task66.Assignment2.com.fruitbase;
 
 import Lesson2.Task66.Assignment2.com.fruitbase.fruits.*;
+
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -11,10 +12,10 @@ public class FruitCatalogue implements Serializable {
 
     FruitCatalogue() {
         //Для проверки сериализации/десериализации 2 версии каталога
-       /*fruits = new Fruit[]{new Apple("apple", 0.4, new BigDecimal("50.00")),
-                new Orange("orange", 0.4, new BigDecimal("50.00")),
-                new Banana("banana", 0.4, new BigDecimal("50.00")),
-                new Pineapple("pineapple", 0.4, new BigDecimal("50.00"))
+       /*fruits = new Fruit[]{new Apple("apple", 0.4, new BigDecimal("20.00")),
+                new Orange("orange", 0.4, new BigDecimal("20.00")),
+                new Banana("banana", 0.4, new BigDecimal("20.00")),
+                new Pineapple("pineapple", 0.4, new BigDecimal("0.00"))
         };*/
 
         fruits = new Fruit[]{new Apple("apple", 0.7, new BigDecimal("50.00")),
