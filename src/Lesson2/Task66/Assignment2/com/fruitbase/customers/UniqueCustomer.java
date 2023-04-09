@@ -31,4 +31,3 @@ public class UniqueCustomer extends Customer {
     }
 
 }
-
