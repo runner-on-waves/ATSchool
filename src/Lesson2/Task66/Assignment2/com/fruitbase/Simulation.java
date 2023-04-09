@@ -6,6 +6,10 @@ import Lesson2.Task66.Assignment2.com.fruitbase.customers.UniqueCustomer;
 
 public class Simulation {
     public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Заказ не указан в аргументах командной строки");
+            return;
+        }
         FruitBase fruitBase = new FruitBase();
         System.out.println("Исходный каталог фруктов:");//отладочный вывод исходного каталога в классе
         System.out.println(fruitBase); //отладочный вывод исходного каталога в классе
@@ -21,10 +25,6 @@ public class Simulation {
                 System.out.println(fruitBase);
                 System.out.println(" ");
 
-            }
-            if (args.length == 0) {
-                System.out.println("Заказ не указан в аргументах командной строки");
-                return;
             }
         }
 
