@@ -4,7 +4,7 @@ import Lesson2.Task66.Assignment2.com.fruitbase.fruits.Fruit;
 
 import java.math.BigDecimal;
 
-public class Cargo {
+public class Cargo implements Delivery{
     private Fruit[] foundFruits;
 
     Cargo() {
@@ -27,7 +27,7 @@ public class Cargo {
         return totalPrice;
     }
 
-    void addFruit(Fruit fruit) {
+    public void addFruit(Fruit fruit) {
         Fruit[] arrayCopy = foundFruits;
         foundFruits = new Fruit[arrayCopy.length + 1]; // резервируем место
         foundFruits[foundFruits.length - 1] = fruit;
@@ -60,7 +60,7 @@ public class Cargo {
             s.append(currentCargoFruit.getName()).append(" ");
         }
         String weight = String.format("%.2f", this.getWeight());
-        return "Информация о грузе(" +currentCargoFruits.length + "): " + s + "\n" +
+        return "Информация о грузе(" + currentCargoFruits.length + "): " + s + "\n" +
                 "Вес: " + weight + "  " + "Цена: " + this.getPrice();
     }
 

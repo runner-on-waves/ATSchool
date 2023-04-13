@@ -1,6 +1,6 @@
 package Lesson2.Task66.Assignment2.com.fruitbase.customers;
 
-import Lesson2.Task66.Assignment2.com.fruitbase.Cargo;
+import Lesson2.Task66.Assignment2.com.fruitbase.Delivery;
 import Lesson2.Task66.Assignment2.com.fruitbase.fruits.Fruit;
 
 public class UniqueCustomer extends Customer {
@@ -9,9 +9,9 @@ public class UniqueCustomer extends Customer {
     }
 
     @Override
-    public void takeFruits(Cargo cargo) {
+    public void takeFruits(Delivery delivery) {
         //выбирает только уникальные фрукты
-        Fruit[] currentCargoFruits = cargo.getFruits();
+        Fruit[] currentCargoFruits = delivery.getFruits();
         for (Fruit fruit : currentCargoFruits) {
             boolean fruitFound = false;
             for (Fruit purchase : purchases) {
@@ -25,7 +25,7 @@ public class UniqueCustomer extends Customer {
                 purchases = new Fruit[arrayCopy.length + 1]; // резервируем место
                 System.arraycopy(arrayCopy, 0, purchases, 0, arrayCopy.length);
                 purchases[purchases.length - 1] = fruit;
-                cargo.removeFruit(fruit);
+                delivery.removeFruit(fruit);
             }
         }
     }
