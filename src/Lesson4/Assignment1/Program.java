@@ -1,17 +1,24 @@
 package Lesson4.Assignment1;
+
 public class Program {
     public static void main(String[] args) {
-
+        if (args.length == 0) {
+            System.out.println("Аргументы не переданы");
+            System.exit(-1);
+        }
         System.out.print("Переданные аргументы: ");
         printArray(args);
         String param = args[0];
+        int[] numbers = new int[args.length - 1]; //создаем массив для числовых аргументов
         if (isInteger(param)) {//Если первый элемент число, то сообщение об ошибке
             System.out.println("Не передано название операции");
             System.exit(-1);
         }
-        int[] numbers = new int[args.length - 1]; //создаем массив для числовых аргументов
-
-        for (int i = 1; i < args.length; i++) {//как исправить чтобы ходило по массиву?
+        if (args.length == 1) {//Проверка что есть аргументы кроме параметра
+            System.out.println("Не переданы числа для операции");
+            System.exit(-1);
+        }
+        for (int i = 1; i < args.length; i++) {
             try {
                 numbers[i - 1] = Integer.parseInt(args[i]);
             } catch (Exception e) {
@@ -19,9 +26,10 @@ public class Program {
                 System.exit(-1);
             }
         }
+
         System.out.println("Вывод:");
+        printArray(numbers);
         if (param.equals("Double")) {
-            printArray(numbers);
             Function doubleParam = new Double();
             printArray(applyFunction(numbers, doubleParam));
         } else if (param.equals("Half")) {
