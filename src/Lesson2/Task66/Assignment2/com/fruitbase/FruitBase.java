@@ -12,16 +12,16 @@ public class FruitBase implements Serializable {
         fruitList = new FruitCatalogue();
     }
 
-    public Cargo takeOrder(String[] order) {
-        Cargo cargo = new Cargo();
+    public Delivery takeOrder(String[] order) {
+        Delivery delivery = new Cargo();
 
         for (String s : order) {
             Fruit fruit = fruitList.findFruit(s);
             if (fruit != null) {
-                cargo.addFruit(fruit);
+                delivery.addFruit(fruit);
             }
         }
-        return cargo;
+        return delivery;
     }
 
     public void exportCatalogue() {

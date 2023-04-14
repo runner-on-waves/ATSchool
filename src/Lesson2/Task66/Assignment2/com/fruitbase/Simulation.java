@@ -31,16 +31,16 @@ public class Simulation {
         //Блок для проверки заказов покупателей
         Customer[] customers = {new FreshCustomer("Fresh"), new UniqueCustomer("Unique")};
         for (int i = 0; i < customers.length; i++) {
-            Cargo cargo = fruitBase.takeOrder(args);
+            Delivery delivery= fruitBase.takeOrder(args);
             System.out.println("Груз до покупок");
-            System.out.println(cargo);
-            customers[i].takeFruits(cargo);
+            System.out.println(delivery);
+            customers[i].takeFruits(delivery);
             System.out.println("");
             System.out.print("Покупатель " + (i + 1) + " тип " + customers[i].getClass().getSimpleName() + " с именем " + customers[i] + " купил: ");
             customers[i].printPurchases();
             System.out.println("");
             System.out.println("Груз после покупок");
-            System.out.println(cargo);
+            System.out.println(delivery);
             System.out.println("");
 
         }

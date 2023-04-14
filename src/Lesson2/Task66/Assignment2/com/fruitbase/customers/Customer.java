@@ -1,6 +1,5 @@
 package Lesson2.Task66.Assignment2.com.fruitbase.customers;
-
-import Lesson2.Task66.Assignment2.com.fruitbase.Cargo;
+import Lesson2.Task66.Assignment2.com.fruitbase.Delivery;
 import Lesson2.Task66.Assignment2.com.fruitbase.fruits.Fruit;
 
 public abstract class Customer {
@@ -16,7 +15,7 @@ public abstract class Customer {
 
     }
 
-    public abstract void takeFruits(Cargo cargo);// метод принимает груз и сохраняет из него фрукты во внутренний массив, т.е. в грузе объекты заканчиваются
+    public abstract void takeFruits(Delivery delivery);// метод принимает груз и сохраняет из него фрукты во внутренний массив, т.е. в грузе объекты заканчиваются
 
     public void printPurchases() {
         for (Fruit fruit : purchases) {
