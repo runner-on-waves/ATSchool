@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class FruitCatalogue implements Serializable {
     private Fruit[] fruits;
-
+    private static final long serialVersionUID = 1L;//уникальный идентификатор версии сериализованного класса
 
     FruitCatalogue() {
         //Для проверки сериализации/десериализации 2 версии каталога

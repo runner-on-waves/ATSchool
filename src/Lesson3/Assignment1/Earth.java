@@ -19,8 +19,7 @@ public class Earth extends NatureElement {
             System.out.println("Earth + Water = Mud");
             return new Mud();
         } else {
-            System.out.println("Неизвестный элемент");
-            return null;
+            throw new UnsupportedOperationException();
         }
     }
 }

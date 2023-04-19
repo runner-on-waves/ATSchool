@@ -5,7 +5,7 @@ import Lesson2.Task66.Assignment2.com.fruitbase.fruits.Fruit;
 import java.io.*;
 
 public class FruitBase implements Serializable {
-    private static final long serialVersionUID = 1L;//уникальный идентификатор версии сериализованного класса
+    private static final long serialVersionUID = 2L;//уникальный идентификатор версии сериализованного класса
     private FruitCatalogue fruitList;
 
     FruitBase() {
@@ -24,26 +24,32 @@ public class FruitBase implements Serializable {
         return delivery;
     }
 
-    public void exportCatalogue() {
+    public void exportCatalogue(String path) throws Exception {
         String exportPath = "C:\\javaHomework\\Lesson3\\save.ser";
+        if (!path.equals("")) {
+            exportPath = path;
+        }
         try (FileOutputStream outputStream = new FileOutputStream(exportPath)) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(fruitList);
             objectOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }  catch (Exception e) {
+            throw e;
         }
         System.out.println("Каталог экспортирован " + exportPath);
     }
 
-    public void importCatalogue() {
+    public void importCatalogue(String path) throws Exception {
         String importPath = "C:\\javaHomework\\Lesson3\\save.ser";
+        if (!path.equals("")) {
+            importPath = path;
+        }
         try (FileInputStream fileInputStream = new FileInputStream(importPath)) {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             fruitList = (FruitCatalogue) objectInputStream.readObject();
             System.out.println("Каталог импортирован " + importPath);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw e;
         }
     }
 

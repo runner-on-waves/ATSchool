@@ -1,12 +1,13 @@
 package Lesson3.Assignment1;
 
+import java.util.NoSuchElementException;
+
 class NatureElement {
-    //protected String name;
-    NatureElement connect(NatureElement element) {
-        return new NatureElement();
+    NatureElement connect(NatureElement element) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
-    static NatureElement create(String elementName) {
+    static NatureElement create(String elementName){
         switch (elementName) {
             case "Fire":
                 return new Fire();
@@ -16,11 +17,11 @@ class NatureElement {
                 return new Earth();
             case "Air":
                 return new Air();
+            case "Energy":
+                return new Energy();//элемент был добавлен, так как может быть использован для создания других элементов в сочетании с базовыми
             default:
-                System.out.println("Неизвестный элемент");
-                return null;
+                throw new NoSuchElementException();
         }
-
     }
 }
 

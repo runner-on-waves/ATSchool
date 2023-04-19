@@ -2,7 +2,7 @@ package Lesson3.Assignment1;
 
 public class Water extends NatureElement {
     @Override
-    NatureElement connect(NatureElement element) {
+    NatureElement connect(NatureElement element) throws UnsupportedOperationException {
         if (element instanceof Water) {
             System.out.println("Water + Water = Sea");
             return new Sea();
@@ -18,9 +18,12 @@ public class Water extends NatureElement {
         if (element instanceof Air) {
             System.out.println("Water + Air = Rain");
             return new Rain();
+        }
+        if (element instanceof Energy) {
+            System.out.println("Water + Energy = Steam");
+            return new Steam();
         } else {
-            System.out.println("Неизвестный элемент");
-            return null;
+            throw new UnsupportedOperationException();
         }
     }
 }

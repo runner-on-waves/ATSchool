@@ -16,7 +16,13 @@ public class Alchemy {
         NatureElement[] elementsArray = new NatureElement[args.length];
         for (int i = 0; i < args.length; i++) {
             String elementName = args[i];
-            elementsArray[i] = NatureElement.create(elementName);
+            try {
+                elementsArray[i] = NatureElement.create(elementName);
+            } catch (java.util.NoSuchElementException e) {
+                System.out.println("Неизвестный элемент: " + args[i]);
+                e.printStackTrace();
+                System.exit(-1);
+            }
             if (args[i] == null) {
                 System.out.println("Неверные названия элементов: " + args[i]);
                 return;
@@ -27,9 +33,16 @@ public class Alchemy {
             if (k + 1 < elementsArray.length) {
                 NatureElement composedNatureElement = null;
                 if (elementsArray[k] != null) {
-                    composedNatureElement = elementsArray[k].connect(elementsArray[k + 1]);
+                    try {
+                        composedNatureElement = elementsArray[k].connect(elementsArray[k + 1]);
+                        System.out.println("Создан производный элемент " + composedNatureElement.getClass().getSimpleName() + "\n");
+                    } catch (UnsupportedOperationException e) {
+                        System.out.println("Неподдерживаемая операция. Нельзя создать производный элемент: "
+                                + elementsArray[k].getClass().getSimpleName() + " + "
+                                + elementsArray[k + 1].getClass().getSimpleName());
+                        e.printStackTrace();
+                    }
                 }
-                System.out.println("Создан производный элемент " + composedNatureElement.getClass().getSimpleName() + "\n");
             } else {
                 System.out.println("Нельзя создать производный элемент. Не хватает материалов.Базовый элемент: " + elementsArray[k].getClass().getSimpleName() + " + ?");
             }
