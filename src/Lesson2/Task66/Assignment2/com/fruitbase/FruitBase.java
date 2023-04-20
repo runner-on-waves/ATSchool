@@ -24,33 +24,20 @@ public class FruitBase implements Serializable {
         return delivery;
     }
 
-    public void exportCatalogue(String path) throws Exception {
-        String exportPath = "C:\\javaHomework\\Lesson3\\save.ser";
-        if (!path.equals("")) {
-            exportPath = path;
-        }
-        try (FileOutputStream outputStream = new FileOutputStream(exportPath)) {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(fruitList);
-            objectOutputStream.close();
-        }  catch (Exception e) {
-            throw e;
-        }
-        System.out.println("Каталог экспортирован " + exportPath);
+    public void exportCatalogue(String path) throws IOException, RuntimeException {
+        FileOutputStream outputStream = new FileOutputStream(path);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(fruitList);
+        objectOutputStream.close();
+        System.out.println("Каталог экспортирован " + path);
     }
 
-    public void importCatalogue(String path) throws Exception {
-        String importPath = "C:\\javaHomework\\Lesson3\\save.ser";
-        if (!path.equals("")) {
-            importPath = path;
-        }
-        try (FileInputStream fileInputStream = new FileInputStream(importPath)) {
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            fruitList = (FruitCatalogue) objectInputStream.readObject();
-            System.out.println("Каталог импортирован " + importPath);
-        } catch (Exception e) {
-            throw e;
-        }
+    public void importCatalogue(String path) throws IOException, RuntimeException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(path);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        fruitList = (FruitCatalogue) objectInputStream.readObject();
+        objectInputStream.close();
+        System.out.println("Каталог импортирован " + path);
     }
 
     @Override

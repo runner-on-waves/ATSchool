@@ -20,7 +20,6 @@ public class Alchemy {
                 elementsArray[i] = NatureElement.create(elementName);
             } catch (java.util.NoSuchElementException e) {
                 System.out.println("Неизвестный элемент: " + args[i]);
-                e.printStackTrace();
                 System.exit(-1);
             }
             if (args[i] == null) {
@@ -40,7 +39,6 @@ public class Alchemy {
                         System.out.println("Неподдерживаемая операция. Нельзя создать производный элемент: "
                                 + elementsArray[k].getClass().getSimpleName() + " + "
                                 + elementsArray[k + 1].getClass().getSimpleName());
-                        e.printStackTrace();
                     }
                 }
             } else {
