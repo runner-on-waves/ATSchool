@@ -1,9 +1,7 @@
 package Lesson2.Task66.Assignment2.com.fruitbase;
-
 import Lesson2.Task66.Assignment2.com.fruitbase.customers.Customer;
 import Lesson2.Task66.Assignment2.com.fruitbase.customers.FreshCustomer;
 import Lesson2.Task66.Assignment2.com.fruitbase.customers.UniqueCustomer;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InvalidClassException;
@@ -17,13 +15,13 @@ public class Simulation {
         FruitBase fruitBase = new FruitBase();
         System.out.println("Исходный каталог фруктов:");//отладочный вывод исходного каталога в классе
         System.out.println(fruitBase); //отладочный вывод исходного каталога в классе
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].equals("-e") || args[i].equals("--export")) {
-                exportFruitCatalogue(fruitBase, args);
-            } else if (args[i].equals("-i") || args[i].equals("--import")) {
-                importFruitCatalogue(fruitBase, args);
-            }
+        String path = getPath(args);
+        if (isExport(args)) {
+            handleExport(fruitBase, path);
+        } else if (isImport(args)) {
+            handleImport(fruitBase, path);
         }
+
         //Блок для проверки заказов покупателей
         Customer[] customers = {new FreshCustomer("Fresh"), new UniqueCustomer("Unique")};
         for (int i = 0; i < customers.length; i++) {
@@ -58,10 +56,32 @@ public class Simulation {
         return path;
     }
 
-    public static void exportFruitCatalogue(FruitBase fruitBase, String[] args) {
+    public static boolean isImport(String[] args) {
+        boolean isImport = false;
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("-i") || args[i].equals("--import")) {
+                isImport = true;
+                break;
+            }
+        }
+        return isImport;
+    }
+
+    public static boolean isExport(String[] args) {
+        boolean isExport = false;
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("-e") || args[i].equals("--export")) {
+                isExport = true;
+                break;
+            }
+        }
+        return isExport;
+    }
+
+    public static void handleExport(FruitBase fruitBase, String path) {
         try {
             System.out.println("Начинаем экспорт");
-            fruitBase.exportCatalogue(getPath(args));
+            fruitBase.exportCatalogue(path);
         } catch (FileNotFoundException e) {
             System.out.println("Не найден файл");
             System.exit(-1);
@@ -74,10 +94,10 @@ public class Simulation {
         }
     }
 
-    public static void importFruitCatalogue(FruitBase fruitBase, String[] args) {
+    public static void handleImport(FruitBase fruitBase, String path) {
         System.out.println("Начинаем импорт");
         try {
-            fruitBase.importCatalogue(getPath(args));
+            fruitBase.importCatalogue(path);
             System.out.println("Загруженный каталог фруктов:");
             System.out.println(fruitBase);
             System.out.println(" ");
