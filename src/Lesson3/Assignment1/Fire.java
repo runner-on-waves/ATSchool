@@ -20,8 +20,7 @@ public class Fire extends NatureElement {
             System.out.println("Fire + Water = Steam");
             return new Steam();
         } else {
-            System.out.println("Неизвестный элемент");
-            return null;
+            throw new UnsupportedOperationException();
         }
     }
 

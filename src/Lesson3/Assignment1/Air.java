@@ -19,8 +19,7 @@ public class Air extends NatureElement {
             System.out.println("Air + Water = Rain");
             return new Rain();
         } else {
-            System.out.println("Неизвестный элемент");
-            return null;
+            throw new UnsupportedOperationException();
         }
     }
 }
