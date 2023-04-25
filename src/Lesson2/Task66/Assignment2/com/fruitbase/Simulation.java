@@ -1,10 +1,14 @@
 package Lesson2.Task66.Assignment2.com.fruitbase;
+
 import Lesson2.Task66.Assignment2.com.fruitbase.customers.Customer;
 import Lesson2.Task66.Assignment2.com.fruitbase.customers.FreshCustomer;
 import Lesson2.Task66.Assignment2.com.fruitbase.customers.UniqueCustomer;
+import Lesson2.Task66.Assignment2.com.fruitbase.fruits.Fruit;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InvalidClassException;
+import java.math.BigDecimal;
 
 public class Simulation {
     public static void main(String[] args) {
@@ -23,7 +27,30 @@ public class Simulation {
         }
 
         //Блок для проверки заказов покупателей
-        Customer[] customers = {new FreshCustomer("Fresh"), new UniqueCustomer("Unique")};
+        Customer[] customers = {new FreshCustomer("Fresh"), new UniqueCustomer("Unique"), new Customer("Rich") {
+            @Override
+            public void takeFruits(Delivery delivery) {//выбирает только дорогие фрукты
+                Fruit[] currentCargoFruits = delivery.getFruits();
+                BigDecimal maxPrice = new BigDecimal("0");
+                for (Fruit fruit : currentCargoFruits) {
+                    if (fruit.getPrice().compareTo(maxPrice) > 0) {
+                        maxPrice = fruit.getPrice();
+                    }
+
+                }
+                BigDecimal limit = maxPrice.multiply(BigDecimal.valueOf(0.75));
+                for (Fruit fruit : currentCargoFruits) {
+                    if (fruit.getPrice().compareTo(limit) >= 0) {
+                        Fruit[] arrayCopy = purchases;
+                        purchases = new Fruit[arrayCopy.length + 1]; // резервируем место
+                        System.arraycopy(arrayCopy, 0, purchases, 0, arrayCopy.length);
+                        purchases[purchases.length - 1] = fruit;
+                        delivery.removeFruit(fruit);
+                    }
+                }
+            }
+        }};
+
         for (int i = 0; i < customers.length; i++) {
             Delivery delivery = fruitBase.takeOrder(args);
             System.out.println("Груз до покупок");
@@ -58,8 +85,8 @@ public class Simulation {
 
     public static boolean isImport(String[] args) {
         boolean isImport = false;
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].equals("-i") || args[i].equals("--import")) {
+        for (String arg : args) {
+            if (arg.equals("-i") || arg.equals("--import")) {
                 isImport = true;
                 break;
             }
@@ -69,8 +96,8 @@ public class Simulation {
 
     public static boolean isExport(String[] args) {
         boolean isExport = false;
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].equals("-e") || args[i].equals("--export")) {
+        for (String arg : args) {
+            if (arg.equals("-e") || arg.equals("--export")) {
                 isExport = true;
                 break;
             }

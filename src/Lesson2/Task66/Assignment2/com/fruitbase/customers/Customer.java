@@ -8,7 +8,7 @@ public abstract class Customer {
     protected String name;
     protected Fruit[] purchases;
 
-    Customer(String name) {
+    protected Customer(String name) {
         this.name = name;
         //инициализируется внутренний массив
         purchases = new Fruit[0];

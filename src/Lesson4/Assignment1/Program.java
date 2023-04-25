@@ -29,20 +29,44 @@ public class Program {
 
         System.out.println("Вывод:");
         printArray(numbers);
-        if (param.equals("Double")) {
-            Function doubleParam = new Double();
-            printArray(applyFunction(numbers, doubleParam));
-        } else if (param.equals("Half")) {
-            Function halfParam = new Half();
-            printArray(applyFunction(numbers, halfParam));
-        } else if (param.equals("Square")) {
-            Function squareParam = new Square();
-            printArray(applyFunction(numbers, squareParam));
-        } else if (param.equals("Exact")) {
-            Function exactParam = new Exact();
-            printArray(applyFunction(numbers, exactParam));
-        } else {
-            System.out.println("Вывод: Операция " + param + " не поддерживается.");
+
+        switch (param) {
+            case "Double":
+                Function doubleParam = new Double();
+                printArray(applyFunction(numbers, doubleParam));
+                break;
+            case "Half":
+                Function halfParam = new Half();
+                printArray(applyFunction(numbers, halfParam));
+                break;
+            case "Square":
+                Function squareParam = new Square();
+                printArray(applyFunction(numbers, squareParam));
+                break;
+            case "Exact":
+                Function exactParam = new Exact();
+                printArray(applyFunction(numbers, exactParam));
+                break;
+            case "Wave":
+                Function waveParam = new Function() { // анонимный класс
+                    int buffer = 0;
+
+                    @Override
+                    public int evaluate(int number) {//у класса Exact метод evaluate возвращет параметр без изменения
+                        int bufferInternal = buffer;
+                        buffer = number;
+                        return number + bufferInternal;
+                    }
+                };
+                printArray(applyFunction(numbers, waveParam));
+                break;
+            case "SquareEven":
+                Function squareEvenParam = ((int number) -> number % 2 == 0 ? number * number : number);
+                printArray(applyFunction(numbers, squareEvenParam));
+                break;
+            default:
+                System.out.println("Вывод: Операция " + param + " не поддерживается.");
+                break;
         }
     }
 
@@ -55,15 +79,15 @@ public class Program {
     }
 
     public static void printArray(String[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
+        for (String s : array) {
+            System.out.print(s + " ");
         }
         System.out.println(" ");
     }
 
     public static void printArray(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
+        for (int j : array) {
+            System.out.print(j + " ");
         }
         System.out.println(" ");
     }
