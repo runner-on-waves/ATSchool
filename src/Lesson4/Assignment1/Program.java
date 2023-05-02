@@ -2,6 +2,31 @@ package Lesson4.Assignment1;
 
 public class Program {
     public static void main(String[] args) {
+
+        checkParams(args);
+        String param = args[0];
+        int[] numbers = createIntArray(args);
+        System.out.println("Вывод:");
+        printArray(numbers);
+        Function object = makeObjectFromParam(param);
+        printArray(applyFunction(numbers, object));
+
+    }
+
+    public static int[] applyFunction(int[] numbers, Function functionParam) {
+        int[] result = new int[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            try {
+                result[i] = functionParam.evaluate(numbers[i]);
+            } catch (NullPointerException e) {
+                //System.out.println("Данный вид операции не поддерживается");
+                System.exit(-1);
+            }
+        }
+        return result;
+    }
+
+    public static void checkParams(String[] args) {
         if (args.length == 0) {
             System.out.println("Аргументы не переданы");
             System.exit(-1);
@@ -9,7 +34,6 @@ public class Program {
         System.out.print("Переданные аргументы: ");
         printArray(args);
         String param = args[0];
-        int[] numbers = new int[args.length - 1]; //создаем массив для числовых аргументов
         if (isInteger(param)) {//Если первый элемент число, то сообщение об ошибке
             System.out.println("Не передано название операции");
             System.exit(-1);
@@ -18,6 +42,10 @@ public class Program {
             System.out.println("Не переданы числа для операции");
             System.exit(-1);
         }
+    }
+
+    public static int[] createIntArray(String[] args) {
+        int[] numbers = new int[args.length - 1];
         for (int i = 1; i < args.length; i++) {
             try {
                 numbers[i - 1] = Integer.parseInt(args[i]);
@@ -26,29 +54,26 @@ public class Program {
                 System.exit(-1);
             }
         }
+        return numbers;
+    }
 
-        System.out.println("Вывод:");
-        printArray(numbers);
-
+    public static Function makeObjectFromParam(String param) {
+        Function objectFromParam = null;
         switch (param) {
             case "Double":
-                Function doubleParam = new Double();
-                printArray(applyFunction(numbers, doubleParam));
+                objectFromParam = new Double();
                 break;
             case "Half":
-                Function halfParam = new Half();
-                printArray(applyFunction(numbers, halfParam));
+                objectFromParam = new Half();
                 break;
             case "Square":
-                Function squareParam = new Square();
-                printArray(applyFunction(numbers, squareParam));
+                objectFromParam = new Square();
                 break;
             case "Exact":
-                Function exactParam = new Exact();
-                printArray(applyFunction(numbers, exactParam));
+                objectFromParam = new Exact();
                 break;
             case "Wave":
-                Function waveParam = new Function() { // анонимный класс
+                objectFromParam = new Function() { // анонимный класс
                     int buffer = 0;
 
                     @Override
@@ -58,24 +83,15 @@ public class Program {
                         return number + bufferInternal;
                     }
                 };
-                printArray(applyFunction(numbers, waveParam));
                 break;
             case "SquareEven":
-                Function squareEvenParam = ((int number) -> number % 2 == 0 ? number * number : number);
-                printArray(applyFunction(numbers, squareEvenParam));
+                objectFromParam = ((int number) -> number % 2 == 0 ? number * number : number);
                 break;
             default:
-                System.out.println("Вывод: Операция " + param + " не поддерживается.");
+                System.out.print("Операция " + param + " не поддерживается.");
                 break;
         }
-    }
-
-    public static int[] applyFunction(int[] numbers, Function functionParam) {
-        int[] result = new int[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            result[i] = functionParam.evaluate(numbers[i]);
-        }
-        return result;
+        return objectFromParam;
     }
 
     public static void printArray(String[] array) {

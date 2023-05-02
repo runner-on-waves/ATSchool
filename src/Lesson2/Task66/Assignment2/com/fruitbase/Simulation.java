@@ -26,36 +26,20 @@ public class Simulation {
             handleImport(fruitBase, path);
         }
 
-        //Блок для проверки заказов покупателей
-        Customer[] customers = {new FreshCustomer("Fresh"), new UniqueCustomer("Unique"), new Customer("Rich") {
-            @Override
-            public void takeFruits(Delivery delivery) {//выбирает только дорогие фрукты
-                Fruit[] currentCargoFruits = delivery.getFruits();
-                BigDecimal maxPrice = new BigDecimal("0");
-                for (Fruit fruit : currentCargoFruits) {
-                    if (fruit.getPrice().compareTo(maxPrice) > 0) {
-                        maxPrice = fruit.getPrice();
-                    }
-
-                }
-                BigDecimal limit = maxPrice.multiply(BigDecimal.valueOf(0.75));
-                for (Fruit fruit : currentCargoFruits) {
-                    if (fruit.getPrice().compareTo(limit) >= 0) {
-                        Fruit[] arrayCopy = purchases;
-                        purchases = new Fruit[arrayCopy.length + 1]; // резервируем место
-                        System.arraycopy(arrayCopy, 0, purchases, 0, arrayCopy.length);
-                        purchases[purchases.length - 1] = fruit;
-                        delivery.removeFruit(fruit);
-                    }
-                }
-            }
-        }};
+        // Покупатели
+        Customer[] customers = prepareCustomers("Fresh", "Rich", "Unique"); //Подготовка списка покупателей с разными типами
 
         for (int i = 0; i < customers.length; i++) {
             Delivery delivery = fruitBase.takeOrder(args);
             System.out.println("Груз до покупок");
             System.out.println(delivery);
-            customers[i].takeFruits(delivery);
+            try {
+                customers[i].takeFruits(delivery);
+            } catch (NullPointerException e) {
+                System.out.println("Введенный тип покупателя не поддерживается.");
+                System.exit(-1);
+            }
+
             System.out.println("");
             System.out.print("Покупатель " + (i + 1) + " тип " + customers[i].getClass().getSimpleName() + " с именем " + customers[i] + " купил: ");
             customers[i].printPurchases();
@@ -145,4 +129,50 @@ public class Simulation {
             System.exit(-1);
         }
     }
+
+    public static Customer[] prepareCustomers(String... args) {
+        Customer[] customers = new Customer[args.length];
+        for (int i = 0; i < args.length; i++) {
+            String param = args[i];
+            switch (param) {
+                case "Fresh":
+                    customers[i] = new FreshCustomer(param);
+                    break;
+                case "Unique":
+                    customers[i] = new UniqueCustomer(param);
+                    break;
+                case "Rich":
+                    customers[i] = new Customer("Rich") {
+                        @Override
+                        public void takeFruits(Delivery delivery) {//выбирает только дорогие фрукты
+                            Fruit[] currentCargoFruits = delivery.getFruits();
+                            BigDecimal maxPrice = new BigDecimal("0");
+                            for (Fruit fruit : currentCargoFruits) {
+                                if (fruit.getPrice().compareTo(maxPrice) > 0) {
+                                    maxPrice = fruit.getPrice();
+                                }
+
+                            }
+                            BigDecimal limit = maxPrice.multiply(BigDecimal.valueOf(0.75));
+                            for (Fruit fruit : currentCargoFruits) {
+                                if (fruit.getPrice().compareTo(limit) >= 0) {
+                                    Fruit[] arrayCopy = purchases;
+                                    purchases = new Fruit[arrayCopy.length + 1]; // резервируем место
+                                    System.arraycopy(arrayCopy, 0, purchases, 0, arrayCopy.length);
+                                    purchases[purchases.length - 1] = fruit;
+                                    delivery.removeFruit(fruit);
+                                }
+                            }
+                        }
+                    };
+                    break;
+                default:
+                    System.out.println("Введенный тип покупателя " + param + " не поддерживается.");
+                    break;
+            }
+        }
+        return customers;
+    }
+
+
 }
