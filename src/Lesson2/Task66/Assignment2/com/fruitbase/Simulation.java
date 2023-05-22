@@ -27,19 +27,16 @@ public class Simulation {
         }
 
         // Покупатели
-        Customer[] customers = prepareCustomers("Fresh", "Rich", "Unique"); //Подготовка списка покупателей с разными типами
+        Customer[] customers = prepareCustomers("Fresh", "Rich", "Unique","Fraud"); //Подготовка списка покупателей с разными типами
 
         for (int i = 0; i < customers.length; i++) {
             Delivery delivery = fruitBase.takeOrder(args);
             System.out.println("Груз до покупок");
             System.out.println(delivery);
-            try {
-                customers[i].takeFruits(delivery);
-            } catch (NullPointerException e) {
-                System.out.println("Введенный тип покупателя не поддерживается.");
-                System.exit(-1);
+            if (customers[i] == null) {
+                continue;
             }
-
+            customers[i].takeFruits(delivery);
             System.out.println("");
             System.out.print("Покупатель " + (i + 1) + " тип " + customers[i].getClass().getSimpleName() + " с именем " + customers[i] + " купил: ");
             customers[i].printPurchases();
