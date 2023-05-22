@@ -16,12 +16,10 @@ public class Program {
     public static int[] applyFunction(int[] numbers, Function functionParam) {
         int[] result = new int[numbers.length];
         for (int i = 0; i < numbers.length; i++) {
-            try {
-                result[i] = functionParam.evaluate(numbers[i]);
-            } catch (NullPointerException e) {
-                //System.out.println("Данный вид операции не поддерживается");
+            if (functionParam == null) {
                 System.exit(-1);
             }
+            result[i] = functionParam.evaluate(numbers[i]);
         }
         return result;
     }
