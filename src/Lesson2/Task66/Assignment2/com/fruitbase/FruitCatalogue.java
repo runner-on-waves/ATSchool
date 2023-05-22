@@ -21,7 +21,11 @@ public class FruitCatalogue implements Serializable {
         fruits = new Fruit[]{new Apple("apple", 0.7, new BigDecimal("50.00")),
                 new Orange("orange", 0.7, new BigDecimal("50.00")),
                 new Banana("banana", 0.7, new BigDecimal("50.00")),
-                new Pineapple("pineapple", 0.7, new BigDecimal("50.00"))
+                new Pineapple("pineapple", 0.7, new BigDecimal("50.00")),
+                new Fruit("mango", 0.7, new BigDecimal("50.00")) {
+                },
+                new Fruit("kiwi", 0.7, new BigDecimal("10.00")) {
+                }
         };
 
 
